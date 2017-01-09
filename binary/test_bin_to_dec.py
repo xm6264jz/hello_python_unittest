@@ -40,8 +40,6 @@ class TestBinaryToDecimal(unittest.TestCase):
             self.assertEqual(dec, expected_dec_output)
 
 
-
-
     def test_binary_decimal_conversion_with_invalid_input(self):
 
         # Verify a value error is raised with strings that are not made entirely of 0 and 1.
