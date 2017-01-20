@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 import recycling
 
@@ -45,37 +45,55 @@ class TestRecycling(unittest.TestCase):
 
 
     def test_get_crate_quantities(self):
-        example_data = [1, 3, 5, 0, 2, 6]
-        mock_input = Mock(side_effect=example_data)
-        recycling.input = mock_input
-        self.assertEqual(recycling.get_crate_quantities(6), example_data)
 
-        recycling.input = __builtins__.input  # Replace original input
+        example_data = [1, 3, 5, 0, 2, 6]
+
+        '''
+        Create a patch to replace the built in input function with a mock.
+        The mock is called mock_input, and we can change the way it behaves, e.g. provide
+        our desired return values. So when the code calls input(), instead of
+        calling the built-in input function, it will call the mock_input mock function,
+        which doesn't do anything except for returning the values provided in the
+        list of side_effect values - the first time it is called, it returns the first
+        side_effect value (1), second time it will return the second value, (3) etc...
+
+        '''
+
+        with patch('builtins.input') as mock_input:
+            mock_input.side_effect = example_data
+            self.assertEqual(recycling.get_crate_quantities(6), example_data)
 
 
     def test_int_input(self):
 
-        example_invalid_inputs = ['-2', '-1000', 'abc', '123abc', '3']  # Put a valid input at the end or the function will never return
-        recycling.input = Mock(side_effect=example_invalid_inputs)
-        self.assertEqual(recycling.positive_int_input('example question'), 3)
+        # Test with some invalid input
 
-        example_valid_inputs = [ '0', '13', '1', '100000000']
-        recycling.input = Mock(side_effect=example_valid_inputs)
-        self.assertEqual(recycling.positive_int_input('example question'), 0)
-        self.assertEqual(recycling.positive_int_input('example question'), 13)
-        self.assertEqual(recycling.positive_int_input('example question'), 1)
-        self.assertEqual(recycling.positive_int_input('example question'), 100000000)
+        with patch('builtins.input') as mock_input:
+            example_invalid_inputs = ['-2', '-1000', 'abc', '123abc', '3']  # Put a valid input at the end or the function will never return
+            mock_input.side_effect = example_invalid_inputs
+            self.assertEqual(recycling.positive_int_input('example question'), 3)
 
-        recycling.input = __builtins__.input  # Replace mock with original input
+
+        with patch('builtins.input') as mock_input:
+            example_valid_inputs = [ '0', '13', '1', '100000000']
+            mock_input.side_effect = example_valid_inputs
+
+            self.assertEqual(recycling.positive_int_input('example question'), 0)
+            self.assertEqual(recycling.positive_int_input('example question'), 13)
+            self.assertEqual(recycling.positive_int_input('example question'), 1)
+            self.assertEqual(recycling.positive_int_input('example question'), 100000000)
+
 
 
     def test_main(self):
-        example_data = ['4', '1', '3', '2', '3']
-        mock_input = Mock(side_effect=example_data)
-        recycling.input = mock_input
 
-        recycling.main()  # verify program doesn't crash :) Could also test that it's printing correct data with a mock print function.
-        recycling.input = __builtins__.input  # Replace mock with original input
+        with patch('builtins.input') as mock_input:
+
+            example_data = ['4', '1', '3', '2', '3']
+            mock_input.side_effect = example_data
+            recycling.input = mock_input
+
+            recycling.main()  # verify program doesn't crash :) Could also test that it's printing correct data with a mock print function.
 
 
 
