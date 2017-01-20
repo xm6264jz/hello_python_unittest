@@ -137,6 +137,5 @@ class TestGuestListUI(unittest.TestCase):
         guest_list.display_menu = menu_function
 
 
-
 if __name__ == '__main__':
     unittest.main()

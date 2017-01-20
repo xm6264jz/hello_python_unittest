@@ -5,9 +5,6 @@ import recycling
 
 class TestRecycling(unittest.TestCase):
 
-    def test_int_input(self):
-        pass
-
 
     def test_max_values(self):
 
@@ -46,8 +43,6 @@ class TestRecycling(unittest.TestCase):
 
     def test_get_crate_quantities(self):
 
-        example_data = [1, 3, 5, 0, 2, 6]
-
         '''
         Create a patch to replace the built in input function with a mock.
         The mock is called mock_input, and we can change the way it behaves, e.g. provide
@@ -59,25 +54,20 @@ class TestRecycling(unittest.TestCase):
 
         '''
 
-        with patch('builtins.input') as mock_input:
-            mock_input.side_effect = example_data
+        example_data = [1, 3, 5, 0, 2, 6]
+        with patch('builtins.input', side_effect=example_data) as mock_input:
             self.assertEqual(recycling.get_crate_quantities(6), example_data)
 
 
     def test_int_input(self):
 
         # Test with some invalid input
-
-        with patch('builtins.input') as mock_input:
-            example_invalid_inputs = ['-2', '-1000', 'abc', '123abc', '3']  # Put a valid input at the end or the function will never return
-            mock_input.side_effect = example_invalid_inputs
-            self.assertEqual(recycling.positive_int_input('example question'), 3) #Ultimately, should return the valid value at the end of the list. 
+        # Put a valid input at the end or the function will never return
+        with patch('builtins.input', side_effect=['-2', '-1000', 'abc', '123abc', '3']) as mock_input:
+            self.assertEqual(recycling.positive_int_input('example question'), 3) #Ultimately, should return the valid value at the end of the list.
 
 
-        with patch('builtins.input') as mock_input:
-            example_valid_inputs = [ '0', '13', '1', '100000000']
-            mock_input.side_effect = example_valid_inputs
-
+        with patch('builtins.input', side_effect=[ '0', '13', '1', '100000000']) as mock_input:
             self.assertEqual(recycling.positive_int_input('example question'), 0)
             self.assertEqual(recycling.positive_int_input('example question'), 13)
             self.assertEqual(recycling.positive_int_input('example question'), 1)
@@ -87,12 +77,8 @@ class TestRecycling(unittest.TestCase):
 
     def test_main(self):
 
-        with patch('builtins.input') as mock_input:
-
-            example_data = ['4', '1', '3', '2', '3']
-            mock_input.side_effect = example_data
+        with patch('builtins.input', side_effect=['4', '1', '3', '2', '3']) as mock_input:
             recycling.input = mock_input
-
             recycling.main()  # verify program doesn't crash :) Could also test that it's printing correct data with a mock print function.
 
 
