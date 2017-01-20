@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import Mock
+from unittest.mock import patch
 import camel
 
 class TestCamelCase(unittest.TestCase):
@@ -35,19 +35,21 @@ class TestCamelCase(unittest.TestCase):
             'Here is a long sentence with many words' : 'hereIsALongSentenceWithManyWords'
         }
 
-        for input in input_and_expected_outputs.keys():
-            self.assertEqual(camel.camel_case(input), input_and_expected_outputs[input])
+        for input_val in input_and_expected_outputs.keys():
+            self.assertEqual(camel.camel_case(input_val), input_and_expected_outputs[input_val])
 
 
     def test_input_and_output(self):
-        mock_input = Mock(return_value='This IS another SENTenCE')
-        camel.input = mock_input
-        mock_print = Mock()
-        camel.print = mock_print
 
-        camel.main()
+        # Patch the input. Using with context manager automatically takes care of unpatching.
+        with patch('builtins.input', return_value='This IS another SENTenCE'):
 
-        mock_print.assert_called_with('thisIsAnotherSentence')
+            # And, patch the output
+            with patch('builtins.print') as mock_print:
+
+                camel.main()
+                mock_print.assert_called_with('thisIsAnotherSentence')
+
 
 
 if __name__ == '__main__':

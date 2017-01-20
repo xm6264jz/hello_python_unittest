@@ -71,7 +71,7 @@ class TestRecycling(unittest.TestCase):
         with patch('builtins.input') as mock_input:
             example_invalid_inputs = ['-2', '-1000', 'abc', '123abc', '3']  # Put a valid input at the end or the function will never return
             mock_input.side_effect = example_invalid_inputs
-            self.assertEqual(recycling.positive_int_input('example question'), 3)
+            self.assertEqual(recycling.positive_int_input('example question'), 3) #Ultimately, should return the valid value at the end of the list. 
 
 
         with patch('builtins.input') as mock_input:
