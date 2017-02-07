@@ -64,6 +64,7 @@ python -m unittest
 ### triangle
 
 Covered in the lecture, test coverage discussed.
+Tests in separate directory to code - organizing test code and actual code is recommended.
 
 Run unit tests with
 
