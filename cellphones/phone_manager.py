@@ -45,20 +45,20 @@ class PhoneAssignments():
 
 
     def add_employee(self, employee):
-        # TODO throw exception if two employees with same ID are added
+        # TODO raise exception if two employees with same ID are added
         self.employees.append(employee)
 
 
     def add_phone(self, phone):
-        # TODO throw exception if two phones with same ID are added
+        # TODO raise exception if two phones with same ID are added
         self.phones.append(phone)
 
 
     def assign(self, phone_id, employee):
         # Find phone in phones list
-        # TODO if phone is already assigned to an employee, do not change list, throw exception
-        # TODO if employee already has a phone, do not change list, and throw exception
-        # TODO if employee already has this phone, don't make any changes. This should NOT throw an exception.
+        # TODO if phone is already assigned to an employee, do not change list, raise exception
+        # TODO if employee already has a phone, do not change list, and raise exception
+        # TODO if employee already has this phone, don't make any changes. This should NOT raise an exception.
         for phone in self.phones:
             if phone.id == phone_id:
                 phone.assign(employee.id)
