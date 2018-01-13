@@ -84,3 +84,7 @@ From the triangle directory
 coverage coverage run --source=.  -m unittest tests/test_triangle.py
 coverage report -m
 ```
+
+### Cellphone
+
+Your turn. Some of the tests are not finished. Some of the code is not finished. Can you complete this project? Finish all the TODOs in the code.
