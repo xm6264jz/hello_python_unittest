@@ -10,7 +10,7 @@ class TestCamelCase(unittest.TestCase):
         capitalized = 'Abc'
 
         for word in input_words:
-            self.assertEqual(camel.capitalize(word), capitalized)
+            self.assertEqual(capitalized, camel.capitalize(word))
 
 
     def test_lower(self):
@@ -19,7 +19,7 @@ class TestCamelCase(unittest.TestCase):
         lower = 'abc'
 
         for word in input_words:
-            self.assertEqual(camel.lowercase(word), lower)
+            self.assertEqual(lower, camel.lowercase(word))
 
 
     def test_camel_case(self):
@@ -48,9 +48,8 @@ class TestCamelCase(unittest.TestCase):
         }
 
         for input_val in input_and_expected_outputs.keys():
-            self.assertEqual(camel.camel_case(input_val), input_and_expected_outputs[input_val])
-
-
+            # assertEqual(expected, actual)
+            self.assertEqual(input_and_expected_outputs[input_val], camel.camel_case(input_val))
 
 
 

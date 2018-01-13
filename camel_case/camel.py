@@ -16,8 +16,7 @@ def camel_case(sentence):
 
     remove_multiple_spaces = re.sub(r'\s+', ' ', sentence)  # Replace any groups of whitespace with a single space
     remove_surrounding_space = remove_multiple_spaces.strip()  # remove any remaining whitespace
-    print('cleaned', remove_surrounding_space)
-
+    
     words = remove_surrounding_space.split(' ') # Break by spaces
     first_word = lowercase(words[0])  # Lowercase the first word
 
