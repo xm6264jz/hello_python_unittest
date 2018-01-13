@@ -32,11 +32,26 @@ class TestCamelCase(unittest.TestCase):
             'HELLO WORLD' : 'helloWorld',
             'hELLO wORLD' : 'helloWorld',
             'this is a sentence' : 'thisIsASentence',
-            'Here is a long sentence with many words' : 'hereIsALongSentenceWithManyWords'
+            'Here is a long sentence with many words' : 'hereIsALongSentenceWithManyWords',
+            '  Spaces Before': 'spacesBefore',
+            'Spaces after   ': 'spacesAfter',
+            '   Spaces    Every    where   ': 'spacesEveryWhere',
+            'There is a \t tab here': 'thereIsATabHere',
+            'There is a \n newline here': 'thereIsANewlineHere',
+            '👽🌎🌺': '👽🌎🌺',
+            '👽  🌎🌺🐑🌳   🌵🐬': '👽🌎🌺🐑🌳🌵🐬',
+            '你叫 什么 名字': '你叫什么名字',
+            'Write a résumé': 'writeARésumé',
+            'Über die Brücke' : 'überDieBrücke',
+            'Fahre über die Brücke' : 'fahreÜberDieBrücke',
+
         }
 
         for input_val in input_and_expected_outputs.keys():
             self.assertEqual(camel.camel_case(input_val), input_and_expected_outputs[input_val])
+
+
+
 
 
     def test_input_and_output(self):

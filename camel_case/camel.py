@@ -1,3 +1,5 @@
+import re
+
 def capitalize(word):
     ''' Convert word to have uppercase first letter, rest in lowercase'''
     return word[0:1].upper() + word[1:].lower()
@@ -12,7 +14,11 @@ def lowercase(word):
 
 def camel_case(sentence):
 
-    words = sentence.split(' ') # Break by spaces
+    remove_multiple_spaces = re.sub(r'\s+', ' ', sentence)  # Replace any groups of whitespace with a single space
+    remove_surrounding_space = remove_multiple_spaces.strip()  # remove any remaining whitespace
+    print('cleaned', remove_surrounding_space)
+
+    words = remove_surrounding_space.split(' ') # Break by spaces
     first_word = lowercase(words[0])  # Lowercase the first word
 
     # Capitalize the second and subsequent words, put in a new list.
@@ -22,7 +28,7 @@ def camel_case(sentence):
     camel_cased_words = [first_word] + capitalized_words
 
     # Put words back together
-    camel_cased_sentance = ''.join(camel_cased_words) 
+    camel_cased_sentance = ''.join(camel_cased_words)
 
     return camel_cased_sentance
 
