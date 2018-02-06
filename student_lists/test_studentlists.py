@@ -64,12 +64,12 @@ class TestStudentLists(TestCase):
         test_class = ClassList(2)
         test_class.add_student('Taylor Swift')
         test_class.add_student('Kanye West')
-        self.assertEqual('Taylor Swift, Kanye West', test_class.__str__())
+        self.assertEqual('Taylor Swift, Kanye West', str(test_class))
 
 
     def test_string_empty_class(self):
         test_class = ClassList(2)
-        self.assertEqual('', test_class.__str__())
+        self.assertEqual('', str(test_class))
 
 
     def test_index_of_student_student_present(self):
