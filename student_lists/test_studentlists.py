@@ -32,8 +32,7 @@ class TestStudentLists(TestCase):
             test_class.add_student('Test Student')
 
 
-    ## TODO write a test that adds and removes a student, and asserts the student is removed
-    # Use assertNotIn
+    ## TODO write a test that adds and removes a student, and asserts the student is removed. Use assertNotIn
 
 
     ## TODO write a test that removes a student not in the list, and asserts a StudentError is raised
@@ -50,15 +49,15 @@ class TestStudentLists(TestCase):
         self.assertTrue(test_class.is_enrolled('Martha Stewart'))
 
 
-    ## TODO write a test that adds some example students to an example class, checks
-
     def test_enrollment_empty_list(self):
         test_class = ClassList(2)
         self.assertFalse(test_class.is_enrolled('Snoop Dogg'))
 
 
+
     ## TODO write a test that adds some example students to a test class, call check_enrolled
     # for a student not enrolled, assert check_enrolled returns false
+
 
 
     def test_string_with_students_enrolled(self):
