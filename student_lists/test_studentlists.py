@@ -41,7 +41,8 @@ class TestStudentLists(TestCase):
     ## TODO write a test that removes a student from an empty list, and asserts a StudentError is raised
 
 
-    def test_enrollment_when_student_present(self):
+
+    def test_is_enrolled_when_student_present(self):
         test_class = ClassList(2)
         test_class.add_student('Snoop Dogg')
         test_class.add_student('Martha Stewart')
@@ -49,15 +50,13 @@ class TestStudentLists(TestCase):
         self.assertTrue(test_class.is_enrolled('Martha Stewart'))
 
 
-    def test_enrollment_empty_list(self):
+    def test_is_enrolled_empty_class_list(self):
         test_class = ClassList(2)
         self.assertFalse(test_class.is_enrolled('Snoop Dogg'))
 
 
-
-    ## TODO write a test that adds some example students to a test class, call check_enrolled
-    # for a student not enrolled, assert check_enrolled returns false
-
+    ## TODO write a test that adds some example students to a test class,
+    ## then, call is_enrolled for a student who is not enrolled. use assertFalse to verify is_enrolled returns false.
 
 
     def test_string_with_students_enrolled(self):
@@ -88,10 +87,9 @@ class TestStudentLists(TestCase):
 
 
     ## However, it would be useful to check that index_of_student returns None if a student isn't present.
-    ## TODO write a test for index_of_student to assert it returns None if the student is not in the list
-    # Cover the cases where the list is empty
-    # And, when the list is not empty but does not contain the student name.
+    ## TODO write a test for index_of_student to assert it returns None if the student is not in the list if the list is empty. use assertIsNone.
+    ## TODO write another test when the list is not empty but does not contain the student name, assert that the correct index is returned.
 
 
-    ## TODO write a test(s) for your new is_class_full method
-    ## Test a case where the class is full, and when it isn't
+    ## TODO write a test for your new is_class_full method when the class is full. use assertTrue
+    ## TODO write a test for your new is_class_full method for when is empty, and when it is not full. Use assertFalse
