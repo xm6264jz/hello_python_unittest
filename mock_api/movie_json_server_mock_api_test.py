@@ -1,5 +1,5 @@
 from unittest import TestCase
-from unittest.mock import patch, Mock
+from unittest.mock import patch
 
 import movie
 from movie import movie_rating, OMDB_Exception, omdb_call
@@ -7,8 +7,21 @@ from movie import movie_rating, OMDB_Exception, omdb_call
 class Test_OMDB_API(TestCase):
 
     def setUp(self):
-        # replace the movie API with json-server api
-        movie.base_url = 'http://127.0.0.1:3000/movies'
+
+        # TODO run the mock API server before running the tests.
+
+        # For json-server
+        # cd to the mock_omdb_api_json_server directory and run
+        # json-server --watch movies.json --middlewares omdb.js --routes routes.json
+
+        # For the mock python HTTP server, cd to mock_ombd_api_python_server
+        # python mock_omdb.py
+
+        # Control+C to stop either server.
+
+        # replace the movie API with the mock api URL. If you use a different port, then modify this URL.
+        movie.movie_base_url = 'http://127.0.0.1:3000/movies'
+
 
     def test_get_movie_rating(self):
         response = movie_rating('Frozen')

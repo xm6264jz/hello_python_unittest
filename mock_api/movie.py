@@ -29,10 +29,12 @@ movie_base_url = 'http://www.omdbapi.com/'
 class OMDB_Exception(Exception):
     pass
 
+
 def omdb_call(movie_name):
     key = os.environ['OMDB_KEY']  # Read key from environment variable
     params = { 't' : movie_name, 'apikey' : key  }
-    return requests.get(base_url, params ).json()
+    return requests.get(movie_base_url, params).json()
+
 
 def movie_rating(movie_name):
 
@@ -40,7 +42,9 @@ def movie_rating(movie_name):
 
     try:
         data = omdb_call(movie_name)
+
     except Exception as e:
+        print(e)
         raise OMDB_Exception('Error connecting to OMDB')
 
     try:

@@ -9,7 +9,7 @@ class Test_OMDB_API(TestCase):
 
     # Patching with a decorator. Creates a mock for the designated function for the duration of this test, unpatches at the end
     # Note the second argument to the test function is required, makes the Mock object available to the test
-    @patch('movie.omdb_call', return_value = {'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} )
+    @patch('movie.omdb_call', return_value = {'Response': 'True', 'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} )
     def test_get_movie_rating_patch(self, api_patch):
         response = movie_rating('Example Movie')
         self.assertEqual('7.5/10', response)
@@ -19,7 +19,7 @@ class Test_OMDB_API(TestCase):
     def test_get_movie_rating_mock(self):
 
         # Create a mock and replace movie.omdb_call with the Mock function
-        mock_api = Mock(return_value = {'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} )
+        mock_api = Mock(return_value = {'Response': 'True', 'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} )
         movie.omdb_call = mock_api
         response = movie_rating('Example Movie')
         self.assertEqual('7.5/10', response)
@@ -28,9 +28,10 @@ class Test_OMDB_API(TestCase):
         mock_api.assert_called()   # New in python 3.6 so check version and upgrade if needed.
         # See documentation for checking for a certain number of calls, verifying mock was called with expected arguments.
 
+
     # Same test, but uses patch as a context manager
     def test_get_movie_rating_patch_decorator(self):
-        with patch('movie.omdb_call', return_value = {'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} ) as mock_api:
+        with patch('movie.omdb_call', return_value = {'Response': 'True', 'Ratings': [{'Value': '7.5/10', 'Source': 'Internet Movie Database'}]} ) as mock_api:
             response = movie_rating('Example Movie')
             self.assertEqual('7.5/10', response)
 
@@ -47,7 +48,7 @@ class Test_OMDB_API(TestCase):
 
 
     # Was exception thrown if response contains an error?
-    @patch('movie.omdb_call', side_effect=[{'Response':'false', 'Error':'Something went wrong'}])
+    @patch('movie.omdb_call', side_effect=[{'Response':'False', 'Error':'Something went wrong'}])
     def test_get_movie_rating_error_returned_in_response(self, api_patch):
 
         with self.assertRaises(movie.OMDB_Exception) as ex_context:
