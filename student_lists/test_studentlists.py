@@ -32,13 +32,27 @@ class TestStudentLists(TestCase):
             test_class.add_student('Test Student')
 
 
-    ## TODO write a test that adds and removes a student, and asserts the student is removed. Use assertNotIn
+			
+	def test_is_student_removed(self): #tests to make sure removed student is not in list
+		test_class = ClassList(2)
+		test_class.add_student('Test Student')
+		test_class.remove_student('Test Student')
+		test.assertNotIn('Test Student', test_class.class_list)
+
+		
+	def test_for_error_when_student_removal_doesnt_exist(self): #tests to make sure student exists when removing
+		test_class = ClassList(2)
+		test_class.remove_student('Student1')
+		test_class.remove_student('Test Student')
+		with self.assertRaises(StudentError):
+			test_class.remove_student('Test Student')
 
 
-    ## TODO write a test that removes a student not in the list, and asserts a StudentError is raised
-
-
-    ## TODO write a test that removes a student from an empty list, and asserts a StudentError is raised
+	def test_for_error_when_removing_empty_list #tests to make sure you can't remove things from empty lists
+		test_class = ClassList(2)
+		test_class.remove_student('Test Student')
+			with self.assertRaises(StudentError):
+				test_class.remove_student('Test Student')
 
 
 
@@ -55,9 +69,14 @@ class TestStudentLists(TestCase):
         self.assertFalse(test_class.is_enrolled('Snoop Dogg'))
 
 
-    ## TODO write a test that adds some example students to a test class,
-    ## then, call is_enrolled for a student who is not enrolled. use assertFalse to verify is_enrolled returns false.
-
+		
+	def test_adds_examples(self): #verifies student that don't exist aren't enrolled and throw errors
+		test_Class = ClassList(2)
+		test_class.add_student('Student1')
+		test_class.add_student('Student2')
+		
+		with self.assertRaises(StudentError):
+			self.assertFalse(test_class.is_enrolled('Student3'))
 
     def test_string_with_students_enrolled(self):
         test_class = ClassList(2)
@@ -87,9 +106,26 @@ class TestStudentLists(TestCase):
 
 
     ## However, it would be useful to check that index_of_student returns None if a student isn't present.
-    ## TODO write a test for index_of_student to assert it returns None if the student is not in the list if the list is empty. use assertIsNone.
-    ## TODO write another test when the list is not empty but does not contain the student name, assert that the correct index is returned.
+	
+	def test_none_when_empty #tests to return none when list is empty
+		test_class = ClassList(2)
+		with self.assertRaise(StudentError):	
+			self.assertIsNone(test_class.index_of_student('Student1')
+			
+	def test_none_when_student_not_present #tests to return none when student is not present
+		test_class = ClassList(2)
+		test_class.add_student('Studnet 2')
+		with self.assertRaise(StudentError):	
+			self.assertIsNone(test_class.index_of_student('Student1')
+    
 
-
-    ## TODO write a test for your new is_class_full method when the class is full. use assertTrue
-    ## TODO write a test for your new is_class_full method for when is empty, and when it is not full. Use assertFalse
+	def test_is_class_full #tests if class is full
+		test_class = ClassList(2)
+		with self.assertRaise(StudentError):
+			self.assertTrue(test_class.is_class_full)
+			
+	def test_is_class_full #tests if class is not full
+		test_class = ClassList(2)
+		with self.assertRaise(StudentError):
+			self.assertFalse(test_class.is_class_full)
+   
