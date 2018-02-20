@@ -1,5 +1,6 @@
 
 import mileage
+from mileage import MileageError
 import sqlite3
 from unittest import TestCase
 
@@ -44,12 +45,12 @@ class TestMileageDB(TestCase):
 
 
     def test_add_new_vehicle_invalid_new_miles(self):
-        with self.assertRaises(Exception):
-            mileage.addMiles('Car', -100)
-        with self.assertRaises(Exception):
-            mileage.addMiles('Car', 'abc')
-        with self.assertRaises(Exception):
-            mileage.addMiles('Car', '12.def')
+        with self.assertRaises(MileageError):
+            mileage.add_miles('Car', -100)
+        with self.assertRaises(MileageError):
+            mileage.add_miles('Car', 'abc')
+        with self.assertRaises(MileageError):
+            mileage.add_miles('Car', '12.def')
 
 
     # This is not a test method, instead, it's used by the test methods
