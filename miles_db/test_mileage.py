@@ -8,6 +8,12 @@ class TestMileageDB(TestCase):
 
     test_db_url = 'test_miles.db'
 
+    """
+    Before running this test, create test_miles.db
+    Create expected miles table
+    create table miles (vehicle text, total_miles float);
+    """
+
     # The name of this method is important - the test runner will look for it
     def setUp(self):
         # Overwrite the mileage
