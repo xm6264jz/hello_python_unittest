@@ -35,7 +35,7 @@ class TestStudentLists(TestCase):
     ## TODO write a test that adds and removes a student, and asserts the student is removed. Use assertNotIn
 
 
-    ## TODO write a test that removes a student not in the list, and asserts a StudentError is raised
+    ## TODO write a test that adds some example students, then removes a student not in the list, and asserts a StudentError is raised
 
 
     ## TODO write a test that removes a student from an empty list, and asserts a StudentError is raised
