@@ -1,6 +1,5 @@
 
 
-
 class StudentError(Exception):
     """ Custom exception class """
     pass
@@ -18,7 +17,7 @@ class ClassList:
 
 
     def add_student(self, student):
-        ''' Add student if there is space in the class,
+        ''' Add student if there is space in the class,g
         Raises Error if student is already in the list '''
         if len(self.class_list) < self.max_students:
             if student not in self.class_list:
@@ -49,10 +48,14 @@ class ClassList:
 
 
     ## TODO add a method called is_class_full.
+
+def is_class_full(self):
+    return len(self.class_list) >= self.max_students
+
     # This should return True or False to indicate if the class is full.
 
 
-    def __str__(self):
+def __str__(self):
         return ", ".join(self.class_list)
 
 

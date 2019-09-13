@@ -49,16 +49,37 @@ class PhoneAssignments():
         self.employees.append(employee)
 
 
+        for emp in self.employees:
+            if employee.id == emp.id:
+                raise PhoneError("Same Employee ID already exists")
+        self.employees.append(employee)
+
+
     def add_phone(self, phone):
         # TODO raise exception if two phones with same ID are added
+        self.phones.append(phone)
+        for ph in self.phones:
+            if ph.id == phone.id:
+                raise PhoneError("Same Phone ID already exists")
+        self.phones.append(phone)
         self.phones.append(phone)
 
 
     def assign(self, phone_id, employee):
         # Find phone in phones list
         # TODO if phone is already assigned to an employee, do not change list, raise exception
+
+        for phone in self.phones:
+            if phone.id == phone_id and phone.employee_id is not None:
+                raise PhoneError("Phone is already assigned to employee")
         # TODO if employee already has a phone, do not change list, and raise exception
+
+        for phone in self.phones:
+            if phone.id == phone_id and phone.employee_id is not None:
+                raise PhoneError("Phone is already assigned to employee")
         # TODO if employee already has this phone, don't make any changes. This should NOT raise an exception.
+
+
         for phone in self.phones:
             if phone.id == phone_id:
                 phone.assign(employee.id)
@@ -76,14 +97,21 @@ class PhoneAssignments():
         # find phone for employee in phones list
 
         # TODO  should return None if the employee does not have a phone
-        # TODO  the method should raise an exception if the employee does not exist
 
         for phone in self.phones:
             if phone.employee_id == employee.id:
                 return phone
 
+        # TODO  the method should raise an exception if the employee does not exist
+
+        for phone in self.phones:
+         if phone.employee_id == employee.id:
+          return phone
+
 
         return None
+
+        return PhoneError("employee does not exist")
 
 
 class PhoneError(Exception):
