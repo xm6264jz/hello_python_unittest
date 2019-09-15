@@ -86,7 +86,7 @@ class TestStudentLists(TestCase):
 
 
     def test_string_empty_class(self):
-        test_class = ClassList(2)
+        test_class = ClassList(2) 
         self.assertEqual('', str(test_class))
 
 
@@ -109,6 +109,10 @@ class TestStudentLists(TestCase):
     ## TODO write a test for index_of_student when the class_list list is empty.  
     # Assert index_of_student returns None for a student if the list is empty. use assertIsNone.
  
+    def test_index_returns_none_for_empty_list(self):
+        test_class = ClassList(2) 
+        self.assertIsNone(test_class.index_of_student('Student'))
+
     ## TODO write another test for index_of_student. In the case when the list is not empty but 
     # assert that searching for a student name that is not in the list, returns None.
 
