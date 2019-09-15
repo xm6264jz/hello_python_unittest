@@ -72,6 +72,11 @@ class TestStudentLists(TestCase):
     ## TODO write a test that adds some example students to a test class,
     ## then, call is_enrolled for a student who is not enrolled. use assertFalse to verify is_enrolled returns False.
 
+    def test_assertFalse_for_student_not_enrolled(self):
+        test_class = ClassList(2)
+        test_class.add_student('Student 1')
+        test_class.add_student('Student 2')
+        self.assertFalse(test_class.is_enrolled('Student 3'))
 
     def test_string_with_students_enrolled(self):
         test_class = ClassList(2)
