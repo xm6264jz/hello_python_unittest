@@ -81,36 +81,31 @@ class PhoneAssignments():
         # if employee already has a phone, do not change list, and raise exception
         # if employee already has this phone, don't make any changes. This should NOT raise an exception.
         
-
-        
-        try:
-            # If the phone is already assigned to an employee raise error
-            # Loop through the phone list to get my phone object by matching ID
-            print()
-            # Find the phone in the phone list that matches the phone ID given
-            # if that phone has an employee ID that means it is already assigned - raise error
-            for phone in self.phones:
-                if phone.id == phone_id:
-                    if phone.employee_id == employee.id:
-                        print('This phone is already assigned to this employee')
-                    elif phone.employee_id != None:
-                        raise PhoneError('This phone is already assigned to an employee')
-                    else:
-                        # Loop through all phones in the phone list and add the employee IDs to a list if they have an assigned employee
-                        employee_ids = []
-                        for current_phone in self.phones:
-                            if current_phone.employee_id == int:
-                                employee_ids.append(current_phone.id)
-                    
-                        # If the employee ID is found in the list of employee_ids that means they already have a phone & raise an error
-                        if employee.id in employee_ids:
-                                raise PhoneError('employee id is already in list')
-            for phone in self.phones:
-                if phone.id == phone_id:
-                    phone.assign(employee.id)
-                    return
-        except:
-            print('The phone assignment failed')
+        # If the phone is already assigned to an employee raise error
+        # Loop through the phone list to get my phone object by matching ID
+        print()
+        # Find the phone in the phone list that matches the phone ID given
+        # if that phone has an employee ID that means it is already assigned - raise error
+        for phone in self.phones:
+            if phone.id == phone_id:
+                if phone.employee_id == employee.id:
+                    print('This phone is already assigned to this employee')
+                elif phone.employee_id != None:
+                    raise PhoneError('This phone is already assigned to an employee')
+                else:
+                    # Loop through all phones in the phone list and add the employee IDs to a list if they have an assigned employee
+                    employee_ids = []
+                    for current_phone in self.phones:
+                        if current_phone.employee_id == int:
+                            employee_ids.append(current_phone.id)
+                
+                    # If the employee ID is found in the list of employee_ids that means they already have a phone & raise an error
+                    if employee.id in employee_ids:
+                            raise PhoneError('employee id is already in list')
+        for phone in self.phones:
+            if phone.id == phone_id:
+                phone.assign(employee.id)
+                return
 
 
     def un_assign(self, phone_id):
@@ -125,18 +120,14 @@ class PhoneAssignments():
 
         #   should return None if the employee does not have a phone
         #   the method should raise an exception if the employee does not exist
-        try:
-            if employee not in self.employees:
-                raise PhoneError('Employee does not exist')
+        if employee not in self.employees:
+            raise PhoneError('Employee does not exist')
 
-            for phone in self.phones:
-                if phone.employee_id == employee.id:
-                    return phone
+        for phone in self.phones:
+            if phone.employee_id == employee.id:
+                return phone
 
-            return None
-
-        except:
-            print('Employee does not exist.')
+        return None
 
 class PhoneError(Exception):
     pass
