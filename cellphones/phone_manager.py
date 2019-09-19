@@ -102,6 +102,7 @@ class PhoneAssignments():
                     # If the employee ID is found in the list of employee_ids that means they already have a phone & raise an error
                     if employee.id in employee_ids:
                             raise PhoneError('employee id is already in list')
+        
         for phone in self.phones:
             if phone.id == phone_id:
                 phone.assign(employee.id)
