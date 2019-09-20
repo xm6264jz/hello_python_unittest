@@ -17,6 +17,7 @@ def add_miles(vehicle, new_miles):
 
     If the vehicle is None or new_miles is not a positive number, raise MileageError
     '''
+    vehicle = vehicle.upper()
 
     if not vehicle:
         raise MileageError('Provide a vehicle name')
