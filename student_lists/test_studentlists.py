@@ -117,20 +117,23 @@ class TestStudentLists(TestCase):
 
     def test_index_of_student_empty_list(self):
         test_class = ClassList(2)
-        if self.assertEqual('', str(test_class)):
-            self.assertIsNone(test_class.index_of_student('Harry'))
-        else:
-            self.assertIsNotNone(test_class.index_of_student('Harry'))
+       # don't use assertions in if statements. They pass or fail.  
+       self.assertIsNone(test_class.index_of_student('Harry'))
+        
     ## TODO write another test when the list is not empty but does not contain the student name, assert that the correct index is returned.
 
     def test_index_of_student_not_present(self):
         test_class = ClassList(1)
         test_class.add_student('Harry')
-        if self.assertIsNotNone(test_class.index_of_student('Harry')):
-            self.assertEqual(1, test_class.index_of_student('Harry'))
-        else:
-            self.assertIsNone(test_class.index_of_student('Harry'))
-
+        
+        # Assert statements return None. It's not useful to use them in an if statement.  They either pass or fail. 
+        # so these would be valid assertions
+        self.assertIsNotNone(test_class.index_of_student('Harry'))
+        self.assertEqual(1, test_class.index_of_student('Harry'))
+        
+        # but in this test, you should be checking for the correct response for a student that is not present,
+        self.assertIsNone(test_class.index_of_student('Not a student'))
+        
     ## TODO write a test for your new is_class_full method when the class is full. use assertTrue
 
     def test_is_class_full(self):
@@ -141,9 +144,10 @@ class TestStudentLists(TestCase):
 
     ## TODO write a test for your new is_class_full method for when is empty, and when it is not full. Use assertFalse
 
- # Testing whether is full when its empty
-def test_is_class_full(self):
-    test_class = ClassList(3)
-    test_class.add_student('Harry')
-    test_class.add_student('Jack')
-    self.assertFalse(test_class.is_class_full())
+    # Testing whether is full when its empty
+    # watch your indentation
+    def test_is_class_full(self):
+       test_class = ClassList(3)
+       test_class.add_student('Harry')
+       test_class.add_student('Jack')
+       self.assertFalse(test_class.is_class_full())
