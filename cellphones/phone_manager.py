@@ -62,18 +62,16 @@ class PhoneAssignments():
 
     def add_phone(self, phone):
         # raise exception if two phones with same ID are added
-        
-        try:
-            phone_ids = []
-            for current_phones in self.phones:
-                phone_ids.append(current_phones.id)
-            
-            if phone.id in phone_ids:
-                raise PhoneError('This phone is already in the list')
-            else:
-                self.phones.append(phone)
-        except:
-            print('This phone is already in the list')
+        # Let exception be raised so the caller knows there's an error. Don't catch it here. Probably same issue with method above. 
+        phone_ids = []
+        for current_phones in self.phones:
+            phone_ids.append(current_phones.id)
+
+        if phone.id in phone_ids:
+            raise PhoneError('This phone is already in the list')
+        else:
+            self.phones.append(phone)
+
 
     def assign(self, phone_id, employee):
         # Find phone in phones list
