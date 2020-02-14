@@ -90,7 +90,7 @@ class TestStudentLists(TestCase):
     ## TODO write a test for index_of_student when the class_list list is empty.  
     # Assert index_of_student returns None for a student if the list is empty. use assertIsNone.
  
-    ## TODO write another test for index_of_student. In the case when the list is not empty but 
+    ## TODO write another test for index_of_student. In the case when the class_list is not empty but has some students.
     # assert that searching for a student name that is not in the list, returns None.
 
    
