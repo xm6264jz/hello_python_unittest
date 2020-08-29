@@ -22,36 +22,107 @@ class TestCamelCase(unittest.TestCase):
             self.assertEqual(lower, camel.lowercase(word))
 
 
-    def test_camel_case(self):
+    def test_camel_case_single_words(self):
 
         input_and_expected_outputs = {
-            '' : '' ,
             'hello' : 'hello',
             'Hello' : 'hello',
-            'Hello world' : 'helloWorld',
-            'HELLO WORLD' : 'helloWorld',
-            'hELLO wORLD' : 'helloWorld',
-            'this is a sentence' : 'thisIsASentence',
-            'Here is a long sentence with many words' : 'hereIsALongSentenceWithManyWords',
-            '  Spaces Before': 'spacesBefore',
-            'Spaces after   ': 'spacesAfter',
-            '   Spaces    Every    where   ': 'spacesEveryWhere',
-            'There is a \t tab here': 'thereIsATabHere',
-            'There is a \n newline here': 'thereIsANewlineHere',
-            '👽🌎🌺': '👽🌎🌺',
-            '👽  🌎🌺🐑🌳   🌵🐬': '👽🌎🌺🐑🌳🌵🐬',
-            '你叫 什么 名字': '你叫什么名字',
-            'Write a résumé': 'writeARésumé',
-            'Über die Brücke' : 'überDieBrücke',
-            'Fahre über die Brücke' : 'fahreÜberDieBrücke',
+            'Thisisaverylongwordlalalalalalalalalalala': 'thisisaverylongwordlalalalalalalalalalala',
+            'a': 'a'
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_uppercase(self):
+
+        input_and_expected_outputs = {
+            'HELLO': 'hello',
+            'Hello': 'hello',
+            'HeLLo wORlD': 'helloWorld'
 
         }
 
-        for input_val in input_and_expected_outputs.keys():
-            # assertEqual(expected, actual)
-            self.assertEqual(input_and_expected_outputs[input_val], camel.camel_case(input_val))
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
 
 
+    def test_camel_case_lowercase(self):
+
+        input_and_expected_outputs = {
+            'hello': 'hello',
+            'hELLO': 'hello',
+            'heLLo WORlD': 'helloWorld'
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_empty_strings(self):
+
+        input_and_expected_outputs = {
+            '': '',
+            '         ': '',
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_many_words(self):
+
+        input_and_expected_outputs = {
+            'two words': 'twoWords',
+            'this is a sentence': 'thisIsASentence',
+            'Here is a long sentence with many words' : 'hereIsALongSentenceWithManyWords',
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_extra_spaces(self):
+
+        input_and_expected_outputs = {
+            '  Spaces Before': 'spacesBefore',
+            'Spaces after   ': 'spacesAfter',
+            '   Spaces    Every    where   ': 'spacesEveryWhere',
+            '\tThere is a \t tab here': 'thereIsATabHere',
+            '\nThere is a \n newline here': 'thereIsANewlineHere',
+            'There is a newline here\n': 'thereIsANewlineHere',
+            '\nThere is a newline here\n': 'thereIsANewlineHere',
+        
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_emojis(self):
+
+        input_and_expected_outputs = {
+            '👽🌎🌺': '👽🌎🌺',
+            '👽  🌎🌺🐑🌳   🌵🐬': '👽🌎🌺🐑🌳🌵🐬',
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+
+
+    def test_camel_case_international(self):
+
+        input_and_expected_outputs = {
+            '你叫 什么 名字': '你叫什么名字',
+            'Write a résumé': 'writeARésumé',
+            'Über die Brücke': 'überDieBrücke',
+            'Fahre über die Brücke': 'fahreÜberDieBrücke',
+        }
+
+        for input_val, output_val in input_and_expected_outputs.items():
+            self.assertEqual(output_val, camel.camel_case(input_val))
+            
 
     def test_input_and_output(self):
 
