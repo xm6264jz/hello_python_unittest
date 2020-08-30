@@ -1,4 +1,4 @@
-
+""" Basic class registration program """
 
 
 class StudentError(Exception):
@@ -56,11 +56,9 @@ class ClassList:
         return ", ".join(self.class_list)
 
 
-
-
 def main():
 
-    ## Just for testing
+    ## Examples of using the program
 
     capstone = ClassList(5)
     capstone.add_student('Anna')
@@ -89,7 +87,6 @@ def main():
 
     print('Anna is at position', capstone.index_of_student('Anna') ) ## 4
     print('Alex is at position', capstone.index_of_student('Alex') ) ## None
-
 
 
 if __name__ == '__main__':
