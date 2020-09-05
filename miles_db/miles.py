@@ -3,7 +3,7 @@ import sqlite3
 db_url = 'miles.db'   # Assumes the table miles have already been created.
 
 """
-Before running this test, ensure that miles.db exists and contains the miles table
+Before running this code, ensure that miles.db exists and contains the miles table
 If not, create expected miles table with 
 create table miles (vehicle text, total_miles float);
 """
