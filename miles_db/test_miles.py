@@ -47,8 +47,8 @@ class TestMileageDB(TestCase):
 
 
     def test_add_new_vehicle_no_vehicle(self):
-        with self.assertRaises(Exception):
-            mileage.addMiles(None, 100)
+        with self.assertRaises(MileageError):
+            miles.add_miles(None, 100)
 
 
     def test_add_new_vehicle_invalid_new_miles(self):
